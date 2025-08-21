@@ -27,8 +27,7 @@
 		"test": "echo OK",
 		"prepare": "husky",
 		"preversion": "npm run lint && npm run test && npm run build",
-		"version": "conventional-changelog -r 1 -p conventionalcommits -t v",
-		"postversion": "git push && git push --tags"
+		"version": "conventional-changelog -r 1 -p conventionalcommits -t v && git add CHANGELOG.md"
 	},
 	"files": [
 		"dist/**/*",
