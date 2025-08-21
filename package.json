@@ -1,0 +1,40 @@
+{
+	"name": "vite-plugin-kern-extra-icons",
+	"version": "0.0.0",
+	"description": "Vite plugin to load material icons not bundled with @kern-ux/native dynamically",
+	"keywords": [
+		"KERN",
+		"vite-plugin"
+	],
+	"license": "EUPL-1.2",
+	"type": "module",
+	"author": "Dataport AöR <polar@dataport.de>",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Dataport/vite-plugin-kern-extra-icons.git"
+	},
+	"scripts": {
+		"build": "tsc"
+	},
+	"files": [
+		"dist/**/*",
+		"README.md"
+	],
+	"devDependencies": {
+		"@dataport/eslint-config-geodev": "^0.3.4",
+		"@types/node": "^24.3.0",
+		"typescript": "^5.9.2"
+	},
+	"peerDependencies": {
+		"vite": "^7.1.3"
+	},
+	"dependencies": {
+		"@material-symbols/svg-400": "^0.34.1"
+	}
+}
