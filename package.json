@@ -21,6 +21,9 @@
 	},
 	"scripts": {
 		"build": "tsc",
+		"lint": "eslint --cache .",
+		"lint:ci": "eslint .",
+		"lint:fix": "eslint --cache --fix .",
 		"test": "echo OK",
 		"prepare": "husky"
 	},
