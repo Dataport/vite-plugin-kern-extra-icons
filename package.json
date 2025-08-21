@@ -25,7 +25,10 @@
 		"lint:ci": "eslint .",
 		"lint:fix": "eslint --cache --fix .",
 		"test": "echo OK",
-		"prepare": "husky"
+		"prepare": "husky",
+		"preversion": "npm run lint && npm run test && npm run build",
+		"version": "conventional-changelog -r 1 -p conventionalcommits -t v",
+		"postversion": "git push && git push --tags"
 	},
 	"files": [
 		"dist/**/*",
@@ -36,6 +39,8 @@
 		"@commitlint/config-conventional": "^19.8.1",
 		"@dataport/eslint-config-geodev": "^0.3.4",
 		"@types/node": "^24.3.0",
+		"conventional-changelog": "^7.1.1",
+		"conventional-changelog-conventionalcommits": "^9.1.0",
 		"typescript": "^5.9.2"
 	},
 	"peerDependencies": {
