@@ -1,34 +1,33 @@
-import { glob, readFile } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
-import { HmrContext } from 'vite'
+import { HmrContext, type Plugin } from 'vite'
 
 const kernIconRegex = /kern-icon--([a-zA-Z0-9-]+)/g
 
+const viteLoadedFiles = new Set<string>()
 let currentKernIcons: string[] = []
 
-function getUsedKernIconsByString(content: string): string[] {
+function getUsedKernIconsByString (content: string): string[] {
 	const iconMatches = content.matchAll(kernIconRegex)
 	return [...new Set([...iconMatches].map((match) => match[1]))]
 }
 
-async function getUsedKernIcons() {
+async function getUsedKernIcons () {
 	const icons: Set<string> = new Set()
-	for await (const file of glob('src/**/*.{ts,js,vue}')) {
+	for (const file of viteLoadedFiles) {
 		const content = await readFile(file)
-		getUsedKernIconsByString(content.toString()).forEach((icon) =>
-			icons.add(icon)
-		)
+		getUsedKernIconsByString(content.toString()).forEach((icon) => icons.add(icon))
 	}
 	return [...icons]
 }
 
-async function loadKernIconCss(icon: string) {
+async function loadKernIconCss (icon: string) {
 	const iconBuffer = await readFile(
 		fileURLToPath(
 			import.meta.resolve(
-				`@material-symbols/svg-400/rounded/${icon.replaceAll('-', '_')}.svg`
-			)
-		)
+				`@material-symbols/svg-400/rounded/${icon.replaceAll('-', '_')}.svg`,
+			),
+		),
 	)
 	const iconSvg = iconBuffer
 		.toString()
@@ -43,35 +42,48 @@ async function loadKernIconCss(icon: string) {
 	`
 }
 
-export default function kernExtraIcons() {
+export default function kernExtraIcons (): Plugin {
 	const virtualId = 'virtual:kern-extra-icons'
 	const resolvedVirtualId = '\0' + virtualId
 
 	return {
 		name: 'kern-extra-icons',
-		resolveId(id: string) {
+		enforce: 'pre',
+		resolveId (id: string) {
 			if (id === virtualId) {
 				return resolvedVirtualId
 			}
 		},
-		async load(id: string) {
+		load (id: string) {
+			if (id === resolvedVirtualId) {
+				return `const sheet = new CSSStyleSheet()
+sheet.replaceSync(import.meta.kernExtraIcons)
+export default sheet`
+			} else if (
+				!id.includes('node_modules') &&
+				!id.startsWith('\0') &&
+				['vue', 'ts', 'js', 'css'].some(suffix => id.endsWith(`.${suffix}`))
+			) {
+				const filename = id.split('?')[0]
+				viteLoadedFiles.add(filename)
+			}
+		},
+		async transform (code: string, id: string) {
 			if (id === resolvedVirtualId) {
 				currentKernIcons = await getUsedKernIcons()
 				const cssRules: string[] = await Promise.all(
-					currentKernIcons.map(async (icon) => await loadKernIconCss(icon))
+					currentKernIcons.map(async (icon) => await loadKernIconCss(icon)),
 				)
-				return `
-					const sheet = new CSSStyleSheet()
-					sheet.replaceSync(${JSON.stringify(cssRules.join('\n'))})
-					export default sheet
-				`
+				return {
+					code: code.replace('import.meta.kernExtraIcons', JSON.stringify(cssRules.join('\n'))),
+				}
 			}
 		},
-		async handleHotUpdate({ server, read }: HmrContext) {
+		async handleHotUpdate ({ server, read }: HmrContext) {
 			const icons = await Promise.all(
 				getUsedKernIconsByString(await read())
 					.filter((icon) => !currentKernIcons.includes(icon))
-					.map(async (icon) => await loadKernIconCss(icon))
+					.map(async (icon) => await loadKernIconCss(icon)),
 			)
 			server.ws.send({
 				type: 'custom',
