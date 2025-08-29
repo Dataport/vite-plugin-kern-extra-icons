@@ -50,6 +50,34 @@ if (import.meta.hot) {
 }
 ```
 
+## Options
+
+You can configure this Vite plugin with options.
+
+### Using CSS `@layer`
+
+If your application uses `@layer` grouping, you can encapsulate the KERN icons as a separate CSS layer.
+This is necessary if you encapsulate KERN itself into a CSS layer (remember to put the icons layer first!).
+
+Example:
+```typescript
+// vite.config.ts
+
+// ...
+kernExtraIcons({
+	cssLayer: 'kern-ux-icons',
+}),
+```
+
+This example yields to the following CSS:
+```css
+/* virtual:kern-extra-icons */
+
+@layer kern-ux-icons {
+	/* ... */
+}
+```
+
 ## Current limitations / Known bugs
 The used KERN icons are detected by a regex search.
 

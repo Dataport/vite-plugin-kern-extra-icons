@@ -42,7 +42,11 @@ async function loadKernIconCss (icon: string) {
 	`
 }
 
-export default function kernExtraIcons (): Plugin {
+export default function kernExtraIcons ({
+	cssLayer = false,
+}: {
+	cssLayer?: string | false
+} = {}): Plugin {
 	const virtualId = 'virtual:kern-extra-icons'
 	const resolvedVirtualId = '\0' + virtualId
 
@@ -56,6 +60,13 @@ export default function kernExtraIcons (): Plugin {
 		},
 		load (id: string) {
 			if (id === resolvedVirtualId) {
+				if (cssLayer) {
+					return `const sheet = new CSSStyleSheet()
+sheet.replaceSync(\`@layer ${cssLayer} {
+	\${import.meta.kernExtraIcons}
+}\`)
+export default sheet`
+				}
 				return `const sheet = new CSSStyleSheet()
 sheet.replaceSync(import.meta.kernExtraIcons)
 export default sheet`
