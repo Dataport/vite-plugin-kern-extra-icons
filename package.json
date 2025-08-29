@@ -13,6 +13,9 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"default": "./dist/index.js"
+		},
+		"./client": {
+			"types": "./src/client.d.ts"
 		}
 	},
 	"repository": {
@@ -31,6 +34,7 @@
 	},
 	"files": [
 		"dist/**/*",
+		"src/**/*.d.ts",
 		"README.md"
 	],
 	"devDependencies": {
