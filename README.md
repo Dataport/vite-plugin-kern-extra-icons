@@ -4,6 +4,7 @@ This Vite plugin allows using arbitrary Material icons with KERN UX.
 
 KERN UX provides only a very limited icon set, e.g. `kern-icon--delete`.
 To use an any icon not bundled with KERN, integrate this plugin and use any icon with the same syntax (e.g., `kern-icon--fullscreen`).
+To use the icons in filled style, use `kern-icon-fill--` as prefix (e.g., `kern-icon-fill--layers`).
 
 ## Installation
 
