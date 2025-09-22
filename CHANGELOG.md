@@ -1,3 +1,8 @@
+## [0.3.0](https://github.com/Dataport/vite-plugin-kern-extra-icons/compare/v0.2.0...v0.3.0) (2025-09-22)
+
+### Features
+
+* allow filled icon style for all icons ([052c2c1](https://github.com/Dataport/vite-plugin-kern-extra-icons/commit/052c2c1755d9da1848042be10c76851255a45676)), closes [#1](https://github.com/Dataport/vite-plugin-kern-extra-icons/issues/1)
 ## [0.2.0](https://github.com/Dataport/vite-plugin-kern-extra-icons/compare/v0.1.0...v0.2.0) (2025-08-29)
 
 ### Features
