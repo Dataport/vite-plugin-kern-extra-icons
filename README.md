@@ -79,6 +79,20 @@ This example yields to the following CSS:
 }
 ```
 
+### Ignore files
+If you have dependencies in your project that are not in a folder named `node_modules`, you still want to ignore them.
+As the differences between "first-class" code and dependencies can not be determined automatically, you can configure additional ignores.
+
+Example:
+```typescript
+// vite.config.ts
+
+// ...
+kernExtraIcons({
+	ignoreFilename: (name: string) => name.includes('my_custom_modules'),
+}),
+```
+
 ## Current limitations / Known bugs
 The used KERN icons are detected by a regex search.
 

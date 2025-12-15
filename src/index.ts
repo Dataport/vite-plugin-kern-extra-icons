@@ -49,8 +49,10 @@ async function loadKernIconCss (icon: KernIcon) {
 
 export default function kernExtraIcons ({
 	cssLayer = false,
+	ignoreFilename = () => false,
 }: {
 	cssLayer?: string | false
+	ignoreFilename?: (filename: string) => boolean
 } = {}): Plugin {
 	const virtualId = 'virtual:kern-extra-icons'
 	const resolvedVirtualId = '\0' + virtualId
@@ -78,7 +80,8 @@ export default sheet`
 			} else if (
 				!id.includes('node_modules') &&
 				!id.startsWith('\0') &&
-				['vue', 'ts', 'js', 'css'].some(suffix => id.endsWith(`.${suffix}`))
+				['vue', 'ts', 'js', 'css'].some(suffix => id.endsWith(`.${suffix}`)) &&
+				!ignoreFilename(id)
 			) {
 				const filename = id.split('?')[0]
 				viteLoadedFiles.add(filename)
