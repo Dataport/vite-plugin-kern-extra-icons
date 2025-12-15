@@ -1,3 +1,8 @@
+## [0.4.0](https://github.com/Dataport/vite-plugin-kern-extra-icons/compare/v0.3.0...v0.4.0) (2025-12-15)
+
+### Features
+
+* allow ignoring additional filenames ([300fb53](https://github.com/Dataport/vite-plugin-kern-extra-icons/commit/300fb5339292378a164952b025d385474e4abb8f))
 ## [0.3.0](https://github.com/Dataport/vite-plugin-kern-extra-icons/compare/v0.2.0...v0.3.0) (2025-09-22)
 
 ### Features
