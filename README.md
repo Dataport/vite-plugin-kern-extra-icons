@@ -99,3 +99,9 @@ The used KERN icons are detected by a regex search.
 This has two drawbacks:
  - If you write KERN icons in a comment (e.g., `// You could also use kern-icon--fullscreen`), these icons will be bundled too.
  - If you generate KERN icon CSS classes (e.g., `'kern-icon--' + (isInFullscreen ? 'fullscreen-exit' : 'fullscreen')`), these icons are not detected.
+
+## Stay In Touch
+
+- [Contact us via email 📧](mailto:polar@dataport.de)
+
+made by [Dataport](https://www.dataport.de/) with ❤️
