@@ -39,7 +39,7 @@
 		"README.md"
 	],
 	"devDependencies": {
-		"@commitlint/cli": "^19.8.1",
+		"@commitlint/cli": "^20.5.0",
 		"@commitlint/config-conventional": "^20.5.0",
 		"@dataport/eslint-config-geodev": "^0.3.4",
 		"@types/node": "^24.3.0",
