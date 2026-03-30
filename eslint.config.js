@@ -1,9 +1,9 @@
-import { defineConfig } from 'eslint/config'
 import mainConfig from '@dataport/eslint-config-geodev'
-import nodeConfig from '@dataport/eslint-config-geodev/node'
-import tsConfig from '@dataport/eslint-config-geodev/typescript'
 import jsonConfig from '@dataport/eslint-config-geodev/json'
 import markdownConfig from '@dataport/eslint-config-geodev/markdown'
+import nodeConfig from '@dataport/eslint-config-geodev/node'
+import tsConfig from '@dataport/eslint-config-geodev/typescript'
+import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
 	{
