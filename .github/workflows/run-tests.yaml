@@ -1,0 +1,37 @@
+name: Run automated tests
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.14.1
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          npm ci
+          npm run lint:ci
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610
+        with:
+          node-version: 24.14.1
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          npm ci
+          npm run test
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610
+        with:
+          node-version: 24.14.1
+          registry-url: https://registry.npmjs.org/
+      - run: |
+          npm ci
+          npm run tsc
