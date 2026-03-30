@@ -28,6 +28,7 @@
 		"lint:ci": "eslint .",
 		"lint:fix": "eslint --cache --fix .",
 		"test": "echo OK",
+		"tsc": "tsc --noEmit",
 		"prepare": "husky",
 		"preversion": "npm run lint && npm run test && npm run build",
 		"version": "conventional-changelog -r 1 -p conventionalcommits -t v && git add CHANGELOG.md"
