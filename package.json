@@ -3,8 +3,8 @@
 	"version": "0.6.0",
 	"description": "Vite plugin to load material icons not bundled with @kern-ux/native dynamically",
 	"keywords": [
-    "KERN",
-    "vite-plugin"
+		"KERN",
+		"vite-plugin"
 	],
 	"license": "EUPL-1.2",
 	"type": "module",
@@ -34,9 +34,9 @@
 		"version": "conventional-changelog -r 1 -p conventionalcommits -t v && git add CHANGELOG.md"
 	},
 	"files": [
-    "dist/**/*",
-    "src/**/*.d.ts",
-    "README.md"
+		"dist/**/*",
+		"src/**/*.d.ts",
+		"README.md"
 	],
 	"devDependencies": {
 		"@commitlint/cli": "^20.5.0",
