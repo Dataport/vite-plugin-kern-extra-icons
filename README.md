@@ -93,6 +93,21 @@ kernExtraIcons({
 }),
 ```
 
+### Load additional icons
+For icons that are not listed in your code, but nevertheless should be bundled for whatever reason (e.g., the icon names are generated dynamically), you can list them in `additionalIcons`.
+
+Example:
+```typescript
+// vite.config.ts
+
+// ...
+kernExtraIcons({
+	additionalIcons: [
+		{ name: 'fullscreen-exit' },
+	],
+}),
+```
+
 ## Current limitations / Known bugs
 The used KERN icons are detected by a regex search.
 

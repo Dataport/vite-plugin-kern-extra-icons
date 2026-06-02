@@ -17,12 +17,13 @@ function getUsedKernIconsByString (content: string): KernIcon[] {
 	return [...new Set([...iconMatches].map((match) => match.groups))] as unknown as KernIcon[]
 }
 
-async function getUsedKernIcons () {
+async function getUsedKernIcons (additionalIcons: KernIcon[] = []): Promise<KernIcon[]> {
 	const icons: Set<KernIcon> = new Set()
 	for (const file of viteLoadedFiles) {
 		const content = await readFile(file)
 		getUsedKernIconsByString(content.toString()).forEach((icon) => icons.add(icon))
 	}
+	additionalIcons.forEach((icon) => icons.add(icon))
 	return [...icons]
 }
 
@@ -48,9 +49,11 @@ async function loadKernIconCss (icon: KernIcon) {
 }
 
 export default function kernExtraIcons ({
+	additionalIcons = [],
 	cssLayer = false,
 	ignoreFilename = () => false,
 }: {
+	additionalIcons?: KernIcon[]
 	cssLayer?: string | false
 	ignoreFilename?: (filename: string) => boolean
 } = {}): Plugin {
@@ -89,7 +92,7 @@ export default sheet`
 		},
 		async transform (code: string, id: string) {
 			if (id === resolvedVirtualId) {
-				currentKernIcons = await getUsedKernIcons()
+				currentKernIcons = await getUsedKernIcons(additionalIcons)
 				const cssRules: string[] = await Promise.all(
 					currentKernIcons.map(async (icon) => await loadKernIconCss(icon)),
 				)

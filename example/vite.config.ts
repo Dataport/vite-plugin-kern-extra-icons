@@ -4,6 +4,10 @@ import kernExtraIcons from '../src/index.js'
 
 export default defineConfig({
 	plugins: [
-		kernExtraIcons(),
+		kernExtraIcons({
+			additionalIcons: [
+				{ name: 'fullscreen-exit' },
+			],
+		}),
 	],
 })
