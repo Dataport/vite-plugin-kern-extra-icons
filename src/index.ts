@@ -43,7 +43,7 @@ async function loadKernIconCss (icon: KernIcon) {
 	return `
 		.kern-icon${icon.style ? `-${icon.style}` : ''}--${icon.name} {
 			mask: url("${iconUrl}");
-			background-color: var(--kern-color-layout-text-default, #171a2b);
+			background-color: var(--kern-color-layout-text-default-contextual, #131525);
 		}
 	`
 }
