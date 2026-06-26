@@ -8,4 +8,4 @@ updates:
     cooldown:
       default-days: 3
       exclude:
-        - @dataport/eslint-config-geodev
+        - "@dataport/eslint-config-geodev"
