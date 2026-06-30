@@ -44,7 +44,7 @@
 		"@dataport/eslint-config-geodev": "^1.0.0-alpha.3",
 		"@types/node": "^25.5.0",
 		"conventional-changelog": "^7.1.1",
-		"conventional-changelog-conventionalcommits": "^9.1.0",
+		"conventional-changelog-conventionalcommits": "^10.0.0",
 		"typescript": "^5.9.2"
 	},
 	"peerDependencies": {
