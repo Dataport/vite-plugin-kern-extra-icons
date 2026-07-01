@@ -44,7 +44,7 @@
 		"@commitlint/config-conventional": "^21.0.2",
 		"@dataport/eslint-config-geodev": "^1.0.0-alpha.3",
 		"@kern-ux/native": "^2.6.2",
-		"@types/node": "^25.5.0",
+		"@types/node": "^26.0.1",
 		"conventional-changelog": "^7.1.1",
 		"conventional-changelog-conventionalcommits": "^9.1.0",
 		"typescript": "^5.9.2",
