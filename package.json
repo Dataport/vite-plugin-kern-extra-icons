@@ -54,7 +54,7 @@
 		"vite": "^8.0.8"
 	},
 	"dependencies": {
-		"@material-symbols/svg-400": "^0.44.0",
+		"@material-symbols/svg-400": "^0.45.4",
 		"husky": "^9.1.7"
 	}
 }
