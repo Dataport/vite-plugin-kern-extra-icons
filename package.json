@@ -24,7 +24,7 @@
 	},
 	"scripts": {
 		"start": "vite --config example/vite.config.ts",
-		"build": "tsc",
+		"build": "tsc -p tsconfig.build.json",
 		"lint": "eslint --cache .",
 		"lint:ci": "eslint .",
 		"lint:fix": "eslint --cache --fix .",
