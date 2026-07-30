@@ -1,5 +1,23 @@
 version: 2
 updates:
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: next
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 20
+    cooldown:
+      default-days: 3
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -9,3 +27,51 @@ updates:
       default-days: 3
       exclude:
         - "@dataport/eslint-config-geodev"
+    commit-message:
+      prefix: chore
+      include: scope
+    versioning-strategy: increase
+    groups:
+      commit:
+        patterns:
+          - "@commitlint/cli"
+          - "@commitlint/config-conventional"
+          - conventional-changelog
+          - conventional-changelog-conventionalcommits
+          - husky
+        update-types:
+          - minor
+          - patch
+      lint:
+        patterns:
+          - "@dataport/eslint-config-geodev"
+          - eslint
+        update-types:
+          - minor
+          - patch
+      build:
+        patterns:
+          - vite
+        update-types:
+          - minor
+          - patch
+      types:
+        patterns:
+          - "@types/node"
+          - typescript
+        update-types:
+          - minor
+          - patch
+      kern:
+        patterns:
+          - "@kern-ux/native"
+          - "@material-symbols/svg-400"
+        update-types:
+          - minor
+          - patch
+      misc:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
