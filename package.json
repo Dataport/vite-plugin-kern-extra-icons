@@ -40,7 +40,7 @@
 		"README.md"
 	],
 	"devDependencies": {
-		"@commitlint/cli": "^21.2.3",
+		"@commitlint/cli": "^21.2.4",
 		"@commitlint/config-conventional": "^21.0.2",
 		"@dataport/eslint-config-geodev": "^1.0.0-alpha.3",
 		"@kern-ux/native": "^2.8.2",
